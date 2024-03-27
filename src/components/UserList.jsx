@@ -2,8 +2,8 @@ export default function UserList({ userList }) {
   return (
     <table className="w-full">
       <thead>
-        <tr>
-          <th>Foto</th>
+        <tr className="border-b border-stone-600">
+          <th className="py-2">Foto</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
@@ -17,8 +17,12 @@ export default function UserList({ userList }) {
           const { picture, name, email, location, registered } = userData;
           return (
             <tr key={index}>
-              <td>
-                <img src={picture.thumbnail} alt="" />
+              <td className="py-2">
+                <img
+                  src={picture.thumbnail}
+                  alt=""
+                  className="mx-auto rounded-full "
+                />
               </td>
               <td>{name.first}</td>
               <td>{name.last}</td>
@@ -26,7 +30,9 @@ export default function UserList({ userList }) {
               <td>{location.country}</td>
               <td>{registered.date}</td>
               <td>
-                <button>Test</button>
+                <button className="bg-stone-700 rounded-sm py-1 px-8 hover:opacity-80">
+                  Test
+                </button>
               </td>
             </tr>
           );
