@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { mockUserList } from "@/mockUserList";
 
+import Button from "@/components/Button";
+
 export default function UserList() {
   const [userList, setUserList] = useState(mockUserList.results);
 
@@ -43,12 +45,7 @@ export default function UserList() {
               <td>{location.country}</td>
               <td>{registered.date}</td>
               <td>
-                <button
-                  className="bg-stone-700 rounded-sm py-1 px-8 hover:opacity-80"
-                  onClick={() => removeUser(uuid)}
-                >
-                  Delete
-                </button>
+                <Button text="Delete" onClick={() => removeUser(uuid)} />
               </td>
             </tr>
           );
