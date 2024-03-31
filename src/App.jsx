@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { mockUserList } from "./mockUserList";
-import UserList from "./components/UserList";
+import { mockUserList } from "@/mockUserList";
+import UserList from "@/components/UserList";
 import "./App.css";
 
 //TODO -> Fetch instead of mockUserList
