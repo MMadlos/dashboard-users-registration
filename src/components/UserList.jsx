@@ -1,4 +1,14 @@
-export default function UserList({ userList }) {
+import { useState } from "react";
+import { mockUserList } from "@/mockUserList";
+
+export default function UserList() {
+  const [userList, setUserList] = useState(mockUserList.results);
+
+  function removeUser(uuid) {
+    const newUserList = userList.filter(({ login }) => login.uuid !== uuid);
+    setUserList(newUserList);
+  }
+
   return (
     <table className="w-full">
       <thead>
@@ -13,10 +23,13 @@ export default function UserList({ userList }) {
         </tr>
       </thead>
       <tbody>
-        {userList.map((userData, index) => {
-          const { picture, name, email, location, registered } = userData;
+        {userList.map((userData) => {
+          const { picture, name, email, location, registered, login } =
+            userData;
+          const { uuid } = login;
+
           return (
-            <tr key={index}>
+            <tr key={uuid}>
               <td className="py-2">
                 <img
                   src={picture.thumbnail}
@@ -30,8 +43,11 @@ export default function UserList({ userList }) {
               <td>{location.country}</td>
               <td>{registered.date}</td>
               <td>
-                <button className="bg-stone-700 rounded-sm py-1 px-8 hover:opacity-80">
-                  Test
+                <button
+                  className="bg-stone-700 rounded-sm py-1 px-8 hover:opacity-80"
+                  onClick={() => removeUser(uuid)}
+                >
+                  Delete
                 </button>
               </td>
             </tr>
