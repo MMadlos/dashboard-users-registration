@@ -1,14 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { mockUserList } from "@/mockUserList";
 
 import Button from "@/components/Button";
 
 export default function UserList() {
   const [userList, setUserList] = useState(mockUserList.results);
+  const [sortedList, setSortedList] = useState(userList);
+
+  useEffect(() => {
+    setSortedList(userList);
+  }, [userList]);
 
   function removeUser(uuid) {
     const newUserList = userList.filter(({ login }) => login.uuid !== uuid);
     setUserList(newUserList);
+  }
+
+  const sortOption = {
+    asc: "asc",
+    des: "des",
+  };
+
+  function sortName(type, dataToSort) {
+    const newUserList = sortedList.toSorted(compareNameFN);
+    setSortedList(newUserList);
+
+    function compareNameFN(a, b) {
+      const A = a.name.first.toUpperCase();
+      const B = b.name.first.toUpperCase();
+
+      if (type === sortOption.asc) {
+        if (A < B) return -1;
+        if (A > B) return 1;
+      }
+
+      if (type === sortOption.des) {
+        if (A < B) return 1;
+        if (A > B) return -1;
+      }
+
+      return 0;
+    }
   }
 
   return (
@@ -17,6 +49,12 @@ export default function UserList() {
         text="Reset data"
         onClick={() => setUserList(mockUserList.results)}
       />
+      <p>Sort name options</p>
+      <div className="flex flex-row gap-4">
+        <Button text="A to Z" onClick={() => sortName(sortOption.asc)} />
+        <Button text="Z to A" onClick={() => sortName(sortOption.des)} />
+        <Button text="Default" onClick={() => setSortedList(userList)} />
+      </div>
       <table className="w-full">
         <thead>
           <tr className="border-b border-stone-600">
@@ -30,7 +68,7 @@ export default function UserList() {
           </tr>
         </thead>
         <tbody>
-          {userList.map((userData) => {
+          {sortedList.map((userData) => {
             const { picture, name, email, location, registered, login } =
               userData;
             const { uuid } = login;
