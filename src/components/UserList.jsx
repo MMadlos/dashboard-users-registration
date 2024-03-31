@@ -55,6 +55,15 @@ export default function UserList() {
         <Button text="Z to A" onClick={() => sortName(sortOption.des)} />
         <Button text="Default" onClick={() => setSortedList(userList)} />
       </div>
+      <div className="flex flex-col justify-start gap-2 ">
+        <Button text="Sort" />
+        <div className="flex flex-row gap-4 bg-stone-800 p-4 items-center rounded-sm">
+          <p>Sort column</p>
+          <Button text="Select column to sort" className="text-emerald-400" />
+          <p>from</p>
+          <Button text="Select sort type" />
+        </div>
+      </div>
       <table className="w-full">
         <thead>
           <tr className="border-b border-stone-600">
