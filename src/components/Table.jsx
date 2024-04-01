@@ -16,26 +16,21 @@ export default function Table({ sortedList, onClickDelete }) {
       </thead>
       <tbody>
         {sortedList.map((userData) => {
-          const { picture, name, email, location, registered, login } =
+          const { id, picture, firstName, lastName, country, date, email } =
             userData;
-          const { uuid } = login;
 
           return (
-            <tr key={uuid}>
+            <tr key={id}>
               <td className="py-2">
-                <img
-                  src={picture.thumbnail}
-                  alt=""
-                  className="mx-auto rounded-full "
-                />
+                <img src={picture} alt="" className="mx-auto rounded-full " />
               </td>
-              <td>{name.first}</td>
-              <td>{name.last}</td>
+              <td>{firstName}</td>
+              <td>{lastName}</td>
               <td>{email}</td>
-              <td>{location.country}</td>
-              <td>{registered.date}</td>
+              <td>{country}</td>
+              <td>{date}</td>
               <td>
-                <Button text="Delete" onClick={() => onClickDelete(uuid)} />
+                <Button text="Delete" onClick={() => onClickDelete(id)} />
               </td>
             </tr>
           );

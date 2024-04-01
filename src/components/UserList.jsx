@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { mockUserList } from "@/mockUserList";
-import { mapUsers } from "@/utils/mapUsers";
+import { mapUserList } from "@/utils/mapUsers";
 
 import Button from "@/components/Button";
 import Table from "@/components/Table";
 import SortPanel from "./SortPanel";
 
-const mappedUsers = mapUsers(mockUserList.results);
+const mappedUsers = mapUserList(mockUserList.results);
 
 export default function UserList() {
   const [userList, setUserList] = useState(mappedUsers);
@@ -16,8 +16,8 @@ export default function UserList() {
     setSortedList(userList);
   }, [userList]);
 
-  function removeUser(uuid) {
-    const newUserList = userList.filter(({ login }) => login.uuid !== uuid);
+  function removeUser(userID) {
+    const newUserList = userList.filter(({ id }) => id !== userID);
     setUserList(newUserList);
   }
 
@@ -48,20 +48,25 @@ export default function UserList() {
     }
   }
 
-  function handleSubmitSort(e) {
+  function handleSort(e) {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
-    const formJson = Object.fromEntries(formData.entries());
+    const formJSON = Object.fromEntries(formData.entries());
 
-    console.log(formJson);
+    const { column, type } = formJSON;
+
+    // Si la columna seleccionada es firstName, el valor a revisar es firstName
+    //  Dentro de firstName, hay que ver si es ascendente o descendente
+
+    console.log(formJSON);
   }
 
   return (
     <>
       <Button text="Reset data" onClick={() => setUserList(mappedUsers)} />
-      <SortPanel onSubmit={handleSubmitSort} />
+      <SortPanel onSubmit={handleSort} />
       <Table sortedList={sortedList} onClickDelete={removeUser} />
     </>
   );
