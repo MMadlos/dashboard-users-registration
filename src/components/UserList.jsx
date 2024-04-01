@@ -21,33 +21,6 @@ export default function UserList() {
     setUserList(newUserList);
   }
 
-  const sortOption = {
-    asc: "asc",
-    des: "des",
-  };
-
-  function sortName(type, dataToSort) {
-    const newUserList = sortedList.toSorted(compareNameFN);
-    setSortedList(newUserList);
-
-    function compareNameFN(a, b) {
-      const A = a.name.first.toUpperCase();
-      const B = b.name.first.toUpperCase();
-
-      if (type === sortOption.asc) {
-        if (A < B) return -1;
-        if (A > B) return 1;
-      }
-
-      if (type === sortOption.des) {
-        if (A < B) return 1;
-        if (A > B) return -1;
-      }
-
-      return 0;
-    }
-  }
-
   function handleSort(e) {
     e.preventDefault();
 
@@ -57,10 +30,18 @@ export default function UserList() {
 
     const { column, type } = formJSON;
 
-    // Si la columna seleccionada es firstName, el valor a revisar es firstName
-    //  Dentro de firstName, hay que ver si es ascendente o descendente
+    const newUserList = sortedList.toSorted(compareFN);
+    setSortedList(newUserList);
 
-    console.log(formJSON);
+    function compareFN(a, b) {
+      const A = a[column].toUpperCase();
+      const B = b[column].toUpperCase();
+
+      if (A < B) return type === "asc" ? -1 : 1;
+      if (A > B) return type === "asc" ? 1 : -1;
+
+      return 0;
+    }
   }
 
   return (
