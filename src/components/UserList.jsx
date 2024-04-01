@@ -17,7 +17,7 @@ export default function UserList() {
   }, [userList]);
 
   function removeUser(userID) {
-    const newUserList = userList.filter(({ id }) => id !== userID);
+    const newUserList = sortedList.filter(({ id }) => id !== userID);
     setUserList(newUserList);
   }
 
