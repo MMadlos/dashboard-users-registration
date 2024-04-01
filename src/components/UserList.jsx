@@ -48,10 +48,20 @@ export default function UserList() {
     }
   }
 
+  function handleSubmitSort(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+
+    console.log(formJson);
+  }
+
   return (
     <>
       <Button text="Reset data" onClick={() => setUserList(mappedUsers)} />
-      <SortPanel />
+      <SortPanel onSubmit={handleSubmitSort} />
       <Table sortedList={sortedList} onClickDelete={removeUser} />
     </>
   );
