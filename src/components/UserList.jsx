@@ -4,6 +4,7 @@ import { mapUsers } from "@/utils/mapUsers";
 
 import Button from "@/components/Button";
 import Table from "@/components/Table";
+import SortPanel from "./SortPanel";
 
 const mappedUsers = mapUsers(mockUserList.results);
 
@@ -50,21 +51,7 @@ export default function UserList() {
   return (
     <>
       <Button text="Reset data" onClick={() => setUserList(mappedUsers)} />
-      <p>Sort name options</p>
-      <div className="flex flex-row gap-4">
-        <Button text="A to Z" onClick={() => sortName(sortOption.asc)} />
-        <Button text="Z to A" onClick={() => sortName(sortOption.des)} />
-        <Button text="Default" onClick={() => setSortedList(userList)} />
-      </div>
-      <div className="flex flex-col justify-start gap-2 ">
-        <Button text="Sort" />
-        <div className="flex flex-row gap-4 bg-stone-800 p-4 items-center rounded-sm">
-          <p>Sort column</p>
-          <Button text="Select column to sort" className="text-emerald-400" />
-          <p>from</p>
-          <Button text="Select sort type" />
-        </div>
-      </div>
+      <SortPanel />
       <Table sortedList={sortedList} onClickDelete={removeUser} />
     </>
   );
