@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { mockUserList } from "@/mockUserList";
+import { mapUsers } from "@/utils/mapUsers";
 
 import Button from "@/components/Button";
 import Table from "@/components/Table";
 
+const mappedUsers = mapUsers(mockUserList.results);
+
 export default function UserList() {
-  const [userList, setUserList] = useState(mockUserList.results);
+  const [userList, setUserList] = useState(mappedUsers);
   const [sortedList, setSortedList] = useState(userList);
 
   useEffect(() => {
@@ -46,10 +49,7 @@ export default function UserList() {
 
   return (
     <>
-      <Button
-        text="Reset data"
-        onClick={() => setUserList(mockUserList.results)}
-      />
+      <Button text="Reset data" onClick={() => setUserList(mappedUsers)} />
       <p>Sort name options</p>
       <div className="flex flex-row gap-4">
         <Button text="A to Z" onClick={() => sortName(sortOption.asc)} />
