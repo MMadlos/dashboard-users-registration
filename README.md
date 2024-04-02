@@ -16,8 +16,8 @@ Exercice to create a table with a list of users and add actions to interact with
   - Selector of number of items to show / Default 5 ✔️
   - Get number of pages depending on how much items are in total / items currently showing ✔️
   - Add page button functionality ✔️
+    - Check style for pagination. Current page is not updating selected style ✔️
     - Check calculation. If some users are deleted and I click around pages and items numbers, the last page is not showing data
-    - Check style for pagination. Current page is not updating selected style
   - Previous - Next buttons
 
 - Group options
