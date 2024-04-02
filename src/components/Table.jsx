@@ -10,8 +10,6 @@ export default function Table({
     currentPage === 1 ? 0 : itemsPerPage * (currentPage - 1);
   const lastItemIndex = itemsPerPage * currentPage - 1;
 
-  console.log({ firstItemIndex, lastItemIndex });
-
   const filteredList = userList.filter((userData, index) => {
     if (index >= firstItemIndex && index <= lastItemIndex) return userData;
   });

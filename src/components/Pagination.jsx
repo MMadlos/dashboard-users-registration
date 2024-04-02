@@ -11,6 +11,10 @@ export default function Pagination({
 }) {
   const options = ["5", "10", "15", "20"];
 
+  const pagesArray = Array(totalPages)
+    .fill()
+    .map((_, index) => index + 1);
+
   return (
     <div className="flex flex-row justify-between">
       <div className="flex gap-4 items-center text-sm">
@@ -42,24 +46,21 @@ export default function Pagination({
         <button className="size-fit p-1">
           <ChevronLeft className="size-5 fill-white flex flex-row gap-0 items-center" />
         </button>
-        {Array(totalPages)
-          .fill("")
-          .map((_, index) => {
-            const pageNum = index + 1;
-            const isCurrentPage = pageNum === currentPage;
+        {pagesArray.map((pageNum, index) => {
+          const isCurrentPage = pageNum === currentPage;
 
-            return (
-              <button
-                key={index}
-                className={`py-2 bg-emerald-800 rounded-full px-4 ${
-                  isCurrentPage ? "bg-emerald-800" : "bg-stone-800"
-                }`}
-                onClick={onClickPage}
-              >
-                {pageNum}
-              </button>
-            );
-          })}
+          return (
+            <button
+              key={index}
+              className={`py-2 bg-emerald-800 rounded-full px-4 ${
+                isCurrentPage ? "bg-emerald-800" : "bg-stone-800"
+              }`}
+              onClick={onClickPage}
+            >
+              {pageNum}
+            </button>
+          );
+        })}
         <button className="size-fit p-1">
           <ChevronRight className="size-5 fill-white flex flex-row gap-0 items-center" />
         </button>

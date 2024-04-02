@@ -62,7 +62,7 @@ export default function UserList() {
 
   function handleClickPageNum(e) {
     const pageNum = e.target.textContent;
-    setCurrentPage(pageNum);
+    setCurrentPage(Number(pageNum));
   }
 
   return (
