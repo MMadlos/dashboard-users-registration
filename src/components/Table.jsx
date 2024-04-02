@@ -2,10 +2,19 @@ import Button from "./Button";
 
 export default function Table({
   userList,
-  numItemsDisplay = 5,
+  itemsPerPage = 5,
   onClickDelete,
+  currentPage,
 }) {
-  const filteredList = userList.filter((_, index) => index < numItemsDisplay);
+  const firstItemIndex =
+    currentPage === 1 ? 0 : itemsPerPage * (currentPage - 1);
+  const lastItemIndex = itemsPerPage * currentPage - 1;
+
+  console.log({ firstItemIndex, lastItemIndex });
+
+  const filteredList = userList.filter((userData, index) => {
+    if (index >= firstItemIndex && index <= lastItemIndex) return userData;
+  });
 
   return (
     <table className="w-full">

@@ -1,10 +1,14 @@
-import Button from "./Button";
 import ChevronLeft from "./Icons/ChevronLeft";
 import DoubleChevLeft from "./Icons/DoubleChevLeft";
 import ChevronRight from "./Icons/ChevronRight";
 import DoubleChevRight from "./Icons/DoubleChevRight";
 
-export default function Pagination({ onChangeItems, totalPages, currentPage }) {
+export default function Pagination({
+  onChangeItems,
+  totalPages,
+  currentPage,
+  onClickPage,
+}) {
   const options = ["5", "10", "15", "20"];
 
   return (
@@ -46,9 +50,11 @@ export default function Pagination({ onChangeItems, totalPages, currentPage }) {
 
             return (
               <button
+                key={index}
                 className={`py-2 bg-emerald-800 rounded-full px-4 ${
                   isCurrentPage ? "bg-emerald-800" : "bg-stone-800"
                 }`}
+                onClick={onClickPage}
               >
                 {pageNum}
               </button>

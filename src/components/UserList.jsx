@@ -9,13 +9,13 @@ import Pagination from "./Pagination";
 
 const mappedUsers = mapUserList(mockUserList.results);
 
-const defaultItemsToShow = 5;
+const DEFAULT_ITEMS_PER_PAGE = 5;
 
 export default function UserList() {
   const [userList, setUserList] = useState(mappedUsers);
   const [sortedList, setSortedList] = useState(userList);
 
-  const [itemsToShow, setItemsToShow] = useState(defaultItemsToShow);
+  const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -55,10 +55,15 @@ export default function UserList() {
   }
 
   function handleViewItems(e) {
-    setItemsToShow(e.target.value);
+    setItemsPerPage(e.target.value);
   }
 
-  const totalPages = Math.ceil(sortedList.length / itemsToShow);
+  const totalPages = Math.ceil(sortedList.length / itemsPerPage);
+
+  function handleClickPageNum(e) {
+    const pageNum = e.target.textContent;
+    setCurrentPage(pageNum);
+  }
 
   return (
     <>
@@ -68,11 +73,13 @@ export default function UserList() {
         onChangeItems={handleViewItems}
         totalPages={totalPages}
         currentPage={currentPage}
+        onClickPage={handleClickPageNum}
       />
       <Table
         userList={sortedList}
         onClickDelete={removeUser}
-        numItemsDisplay={itemsToShow}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
       />
     </>
   );
