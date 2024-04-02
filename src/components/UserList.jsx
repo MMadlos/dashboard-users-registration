@@ -16,6 +16,7 @@ export default function UserList() {
   const [sortedList, setSortedList] = useState(userList);
 
   const [itemsToShow, setItemsToShow] = useState(defaultItemsToShow);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setSortedList(userList);
@@ -57,11 +58,17 @@ export default function UserList() {
     setItemsToShow(e.target.value);
   }
 
+  const totalPages = Math.ceil(sortedList.length / itemsToShow);
+
   return (
     <>
       <Button text="Reset data" onClick={resetData} />
       <SortPanel onSubmit={handleSort} />
-      <Pagination onChangeItems={handleViewItems} />
+      <Pagination
+        onChangeItems={handleViewItems}
+        totalPages={totalPages}
+        currentPage={currentPage}
+      />
       <Table
         userList={sortedList}
         onClickDelete={removeUser}
