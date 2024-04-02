@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-export default function Pagination({ onChange }) {
+export default function Pagination({ onChangeItems }) {
   const options = ["5", "10", "15", "20"];
 
   return (
@@ -10,11 +10,12 @@ export default function Pagination({ onChange }) {
         <select
           name="items"
           className="bg-inherit  rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80 border-2 border-stone-700"
-          onChange={onChange}
+          onChange={onChangeItems}
         >
-          {options.map((value) => {
+          {options.map((value, index) => {
             return (
               <option
+                key={index}
                 value={value}
                 className="bg-stone-900 hover:bg-emerald-900 "
               >

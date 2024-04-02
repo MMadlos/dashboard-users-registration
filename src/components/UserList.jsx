@@ -5,12 +5,17 @@ import { mapUserList } from "@/utils/mapUsers";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
 import SortPanel from "./SortPanel";
+import Pagination from "./Pagination";
 
 const mappedUsers = mapUserList(mockUserList.results);
+
+const defaultItemsToShow = 5;
 
 export default function UserList() {
   const [userList, setUserList] = useState(mappedUsers);
   const [sortedList, setSortedList] = useState(userList);
+
+  const [itemsToShow, setItemsToShow] = useState(defaultItemsToShow);
 
   useEffect(() => {
     setSortedList(userList);
@@ -19,6 +24,10 @@ export default function UserList() {
   function removeUser(userID) {
     const newUserList = sortedList.filter(({ id }) => id !== userID);
     setUserList(newUserList);
+  }
+
+  function resetData() {
+    setUserList(mappedUsers);
   }
 
   function handleSort(e) {
@@ -44,11 +53,20 @@ export default function UserList() {
     }
   }
 
+  function handleViewItems(e) {
+    setItemsToShow(e.target.value);
+  }
+
   return (
     <>
-      <Button text="Reset data" onClick={() => setUserList(mappedUsers)} />
+      <Button text="Reset data" onClick={resetData} />
       <SortPanel onSubmit={handleSort} />
-      <Table sortedList={sortedList} onClickDelete={removeUser} />
+      <Pagination onChangeItems={handleViewItems} />
+      <Table
+        userList={sortedList}
+        onClickDelete={removeUser}
+        numItemsDisplay={itemsToShow}
+      />
     </>
   );
 }

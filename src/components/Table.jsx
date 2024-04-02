@@ -1,6 +1,12 @@
 import Button from "./Button";
 
-export default function Table({ sortedList, onClickDelete }) {
+export default function Table({
+  userList,
+  numItemsDisplay = 5,
+  onClickDelete,
+}) {
+  const filteredList = userList.filter((_, index) => index < numItemsDisplay);
+
   return (
     <table className="w-full">
       <thead>
@@ -15,7 +21,7 @@ export default function Table({ sortedList, onClickDelete }) {
         </tr>
       </thead>
       <tbody>
-        {sortedList.map((userData) => {
+        {filteredList.map((userData) => {
           const { id, picture, firstName, lastName, country, date, email } =
             userData;
 

@@ -13,7 +13,7 @@ Exercice to create a table with a list of users and add actions to interact with
 
 - Pagination ➡️ [reference](https://imgs.search.brave.com/12YZCOeH0v4NLq_hLF-xebqLbJoi7GeP2hZN0xYnSeI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wdWJs/aWMtaW1hZ2VzLmlu/dGVyYWN0aW9uLWRl/c2lnbi5vcmcvdGFn/cy90ZC1wYWdpbmF0/aW9uLTAzLnBuZw)
 
-  - Selector of number of items to show / Default 10
+  - Selector of number of items to show / Default 5 ✔️
   - Get number of pages depending on how much items are in total / items currently showing
   - Previous - Next buttons
 
