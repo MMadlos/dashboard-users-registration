@@ -14,7 +14,10 @@ Exercice to create a table with a list of users and add actions to interact with
 - Pagination ➡️ [reference](https://imgs.search.brave.com/12YZCOeH0v4NLq_hLF-xebqLbJoi7GeP2hZN0xYnSeI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9wdWJs/aWMtaW1hZ2VzLmlu/dGVyYWN0aW9uLWRl/c2lnbi5vcmcvdGFn/cy90ZC1wYWdpbmF0/aW9uLTAzLnBuZw)
 
   - Selector of number of items to show / Default 5 ✔️
-  - Get number of pages depending on how much items are in total / items currently showing
+  - Get number of pages depending on how much items are in total / items currently showing ✔️
+  - Add page button functionality ✔️
+    - Check calculation. If some users are deleted and I click around pages and items numbers, the last page is not showing data
+    - Check style for pagination. Current page is not updating selected style
   - Previous - Next buttons
 
 - Group options
