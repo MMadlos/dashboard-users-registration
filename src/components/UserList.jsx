@@ -80,7 +80,7 @@ export default function UserList() {
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-8">
       <div className="flex flex-row justify-between">
         <Button text="Reiniciar tabla" onClick={resetData} />
         <SortPanel onSubmit={handleSort} />
@@ -98,6 +98,6 @@ export default function UserList() {
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
       />
-    </>
+    </div>
   );
 }
