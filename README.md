@@ -20,8 +20,10 @@ Exercice to create a table with a list of users and add actions to interact with
     - Check bug / Example: if I click on page 5 when items per page are 5, then I change items per page to 20, user list disappears. ✔️
   - Previous - Next buttons ✔️
 
+- Add Bar chart with number of user registration by year ✔️
+
 - Get users from API
-- Add chart map pointing with dots where are the users
+- Add chart map pointing location of the users
 
 - Dark / light mode
 - Group options
