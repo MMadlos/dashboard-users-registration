@@ -43,7 +43,7 @@ export default function Table({
               <td>{country}</td>
               <td>{date}</td>
               <td>
-                <Button text="Delete" onClick={() => onClickDelete(id)} />
+                <Button text="Eliminar" onClick={() => onClickDelete(id)} />
               </td>
             </tr>
           );

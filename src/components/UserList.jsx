@@ -82,7 +82,7 @@ export default function UserList() {
   return (
     <>
       <div className="flex flex-row justify-between">
-        <Button text="Reset data" onClick={resetData} />
+        <Button text="Reiniciar tabla" onClick={resetData} />
         <SortPanel onSubmit={handleSort} />
       </div>
       <Pagination

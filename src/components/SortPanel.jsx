@@ -10,7 +10,7 @@ export default function SortPanel({ onSubmit }) {
         onClick={() => setIsVisible(!isVisible)}
         data-opened={isVisible}
       >
-        {isVisible ? "Close" : "Sort"}
+        {isVisible ? "Cerrar" : "Ordenar"}
       </button>
       {isVisible && <SortOptions onSubmit={onSubmit} />}
     </div>
