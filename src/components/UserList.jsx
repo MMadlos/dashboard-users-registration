@@ -67,6 +67,18 @@ export default function UserList() {
     setCurrentPage(Number(pageNum));
   }
 
+  function handlePageSelector(e) {
+    e.preventDefault();
+
+    const $button = e.target.closest("button");
+    const buttonID = $button.id;
+
+    if (buttonID === "first-page") setCurrentPage(1);
+    if (buttonID === "prev-page") setCurrentPage(currentPage - 1);
+    if (buttonID === "next-page") setCurrentPage(currentPage + 1);
+    if (buttonID === "last-page") setCurrentPage(totalPages);
+  }
+
   return (
     <>
       <Button text="Reset data" onClick={resetData} />
@@ -76,6 +88,7 @@ export default function UserList() {
         totalPages={totalPages}
         currentPage={currentPage}
         onClickPage={handleClickPageNum}
+        onClickPageSelector={handlePageSelector}
       />
       <Table
         userList={sortedList}

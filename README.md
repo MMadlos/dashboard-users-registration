@@ -18,14 +18,18 @@ Exercice to create a table with a list of users and add actions to interact with
   - Add page button functionality ✔️
     - Check style for pagination. Current page is not updating selected style ✔️
     - Check bug / Example: if I click on page 5 when items per page are 5, then I change items per page to 20, user list disappears. ✔️
-  - Previous - Next buttons
+  - Previous - Next buttons ✔️
 
 - Dark / light mode
-- Animation effects
 - Group options
 - Get users from API
 
 - Add chart map pointing with dots where are the users
+
+- Animation effects
+  - When expanding sort options
+  - When changing pages
+  - When changing items per page
 
 ## Notes
 
