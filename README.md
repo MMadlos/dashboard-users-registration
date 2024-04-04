@@ -20,6 +20,8 @@ Exercice to create a table with a list of users and add actions to interact with
     - Check bug / Example: if I click on page 5 when items per page are 5, then I change items per page to 20, user list disappears. ✔️
   - Previous - Next buttons
 
+- Dark / light mode
+- Animation effects
 - Group options
 - Get users from API
 
