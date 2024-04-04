@@ -81,8 +81,10 @@ export default function UserList() {
 
   return (
     <>
-      <Button text="Reset data" onClick={resetData} />
-      <SortPanel onSubmit={handleSort} />
+      <div className="flex flex-row justify-between">
+        <Button text="Reset data" onClick={resetData} />
+        <SortPanel onSubmit={handleSort} />
+      </div>
       <Pagination
         onChangeItems={handleViewItems}
         totalPages={totalPages}
