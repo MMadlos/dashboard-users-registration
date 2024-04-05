@@ -25,16 +25,23 @@ const userList = mapUserList(mockUserList.results);
 const yearsCount = getCountRegisterPerYear(userList);
 
 export default function BarChart() {
-  const options = {};
+  const options = {
+    scales: {
+      y: {
+        suggestedMax: 6,
+      },
+    },
+  };
 
   const labels = yearsCount.map((row) => row.year);
   const datasets = [
     {
-      label: "Total de usuarios registrados por año",
+      label: "Usuarios registrados",
       data: yearsCount.map((row) => row.count),
-      backgroundColor: ["#065f46"],
+      backgroundColor: ["rgba(6, 95, 70, 0.2)"],
       borderColor: ["#065f46"],
       borderWidth: 1,
+      hoverBackgroundColor: "rgba(6, 95, 70, 1)",
     },
   ];
   const data = { labels, datasets };

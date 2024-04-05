@@ -1,7 +1,7 @@
 import "@/App.css";
 
 import UserList from "@/components/UserList";
-import BarChart from "./components/Chart";
+import BarChart from "./components/BarChart";
 
 //TODO -> Fetch instead of mockUserList
 
