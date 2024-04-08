@@ -23,14 +23,17 @@ Exercice to create a table with a list of users and add actions to interact with
 - Add Bar chart with number of user registration by year ✔️
 - Add selector to change data from the chart ✔️
 
-- Get users from API
+- Get users from API -> https://randomuser.me/
 
 - Dark / light mode
 
 - Animation effects
+
   - When expanding sort options
   - When changing pages
   - When changing items per page
+
+- Revisar y valorar cambiar el desplegable de las opciones para ordenar por la etiqueta dialog
 
 ## Notes
 
