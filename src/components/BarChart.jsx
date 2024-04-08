@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useState } from "react";
 import { mockUserList } from "@/mockUserList";
 import { mapUserList } from "@/utils/mapUsers";
 import getCountRegisterPerYear from "@/utils/getCountRegisterPerYear";
@@ -24,17 +25,25 @@ ChartJS.register(
 const userList = mapUserList(mockUserList.results);
 const yearsCount = getCountRegisterPerYear(userList);
 
-export default function BarChart() {
-  const options = {
-    scales: {
-      y: {
-        suggestedMax: 6,
-      },
-    },
-  };
+const countriesArray = userList.map((userData) => userData.country);
 
-  const labels = yearsCount.map((row) => row.year);
-  const datasets = [
+const countriesCount = {};
+countriesArray.forEach((country) => {
+  if (countriesCount[country] === undefined) countriesCount[country] = 0;
+  countriesCount[country]++;
+});
+
+const DEFAULT_CHART_OPTIONS = {
+  scales: {
+    y: {
+      suggestedMax: 6,
+    },
+  },
+};
+
+const DEFAULT_CHART_DATA = {
+  labels: yearsCount.map((row) => row.year),
+  datasets: [
     {
       label: "Usuarios registrados",
       data: yearsCount.map((row) => row.count),
@@ -43,14 +52,55 @@ export default function BarChart() {
       borderWidth: 1,
       hoverBackgroundColor: "rgba(6, 95, 70, 1)",
     },
-  ];
-  const data = { labels, datasets };
+  ],
+};
+
+export default function BarChart() {
+  const [chartData, setChartData] = useState({
+    options: DEFAULT_CHART_OPTIONS,
+    data: DEFAULT_CHART_DATA,
+  });
+
+  function handleCountUsersByCountry() {
+    const options = {};
+
+    const labels = Object.keys(countriesCount);
+
+    const datasets = [
+      {
+        label: "Usuarios por países",
+        data: Object.values(countriesCount),
+        backgroundColor: ["rgba(6, 95, 70, 0.2)"],
+        borderColor: ["#065f46"],
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(6, 95, 70, 1)",
+      },
+    ];
+
+    const data = { options, data: { labels, datasets } };
+    setChartData(data);
+  }
+
+  function handleCountByRegistrationDate() {
+    setChartData({
+      options: DEFAULT_CHART_OPTIONS,
+      data: DEFAULT_CHART_DATA,
+    });
+  }
 
   return (
-    <Bar
-      options={options}
-      data={data}
-      className="bg-stone-800 p-4 rounded-xl border-stone-700 border "
-    />
+    <>
+      <h1>Selecciona los datos que quieres que se muestren en el gráfico</h1>
+      <button onClick={handleCountByRegistrationDate}>
+        Registro de usuarios
+      </button>
+      <button onClick={handleCountUsersByCountry}>Usuarios por países</button>
+
+      <Bar
+        options={chartData.options}
+        data={chartData.data}
+        className="bg-stone-800 p-4 rounded-xl border-stone-700 border "
+      />
+    </>
   );
 }
