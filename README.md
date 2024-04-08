@@ -21,12 +21,11 @@ Exercice to create a table with a list of users and add actions to interact with
   - Previous - Next buttons ✔️
 
 - Add Bar chart with number of user registration by year ✔️
+- Add selector to change data from the chart ✔️
 
 - Get users from API
-- Add chart map pointing location of the users
 
 - Dark / light mode
-- Group options
 
 - Animation effects
   - When expanding sort options
