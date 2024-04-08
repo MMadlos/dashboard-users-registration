@@ -25,6 +25,10 @@ Exercice to create a table with a list of users and add actions to interact with
 
 - Get users from API -> https://randomuser.me/
 
+  - Fetch data ✔️
+  - Check pagination. When, for example, 50 items is requested, it overflows horizontally.
+  - Check restart data -> When is clicked, mocked users are placed instead of the API
+
 - Dark / light mode
 
 - Animation effects
