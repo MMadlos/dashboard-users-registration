@@ -12,6 +12,7 @@ import { useState } from "react";
 import { mockUserList } from "@/mockUserList";
 import { mapUserList } from "@/utils/mapUsers";
 import getCountRegisterPerYear from "@/utils/getCountRegisterPerYear";
+import getCountriesCount from "@/utils/getCountriesCount";
 
 ChartJS.register(
   CategoryScale,
@@ -24,14 +25,6 @@ ChartJS.register(
 
 const userList = mapUserList(mockUserList.results);
 const yearsCount = getCountRegisterPerYear(userList);
-
-const countriesArray = userList.map((userData) => userData.country);
-
-const countriesCount = {};
-countriesArray.forEach((country) => {
-  if (countriesCount[country] === undefined) countriesCount[country] = 0;
-  countriesCount[country]++;
-});
 
 const DEFAULT_CHART_OPTIONS = {
   scales: {
@@ -62,10 +55,10 @@ export default function BarChart() {
   });
 
   function handleCountUsersByCountry() {
+    const countriesCount = getCountriesCount(userList);
+
     const options = {};
-
     const labels = Object.keys(countriesCount);
-
     const datasets = [
       {
         label: "Usuarios por países",
