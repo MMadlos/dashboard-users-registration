@@ -9,11 +9,11 @@ function App() {
   return (
     <main className="container mx-auto my-10">
       <section className="flex flex-col gap-4 ">
-        <h2 className="text-3xl">Gráfico</h2>
+        <h2 className="text-3xl  text-emerald-400">Gráfico</h2>
         <BarChart />
       </section>
-      <section className="flex flex-col gap-4 mt-12">
-        <h2 className="text-3xl">Listado</h2>
+      <section className="flex flex-col gap-4 mt-20">
+        <h2 className="text-3xl font-medium text-emerald-400">Listado</h2>
         <UserList />
       </section>
     </main>
