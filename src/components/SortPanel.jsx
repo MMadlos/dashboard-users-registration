@@ -12,7 +12,14 @@ export default function SortPanel({ onSubmit }) {
       >
         {isVisible ? "Cerrar" : "Ordenar"}
       </button>
-      {isVisible && <SortOptions onSubmit={onSubmit} />}
+      {isVisible && (
+        <SortOptions
+          onSubmit={(e) => {
+            onSubmit(e);
+            setIsVisible(false);
+          }}
+        />
+      )}
     </div>
   );
 }

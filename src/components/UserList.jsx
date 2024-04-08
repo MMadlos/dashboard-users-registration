@@ -30,6 +30,7 @@ export default function UserList() {
 
   function resetData() {
     setUserList(mappedUsers);
+    setSortedList(mappedUsers);
   }
 
   function handleSort(e) {
