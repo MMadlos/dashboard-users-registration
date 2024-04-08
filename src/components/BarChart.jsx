@@ -95,7 +95,7 @@ export default function BarChart() {
 
   return (
     <>
-      <div className="text-sm flex gap-4 items-center justify-center">
+      <div className="text-sm flex gap-4 items-center ">
         <label htmlFor="chart">Datos del gráfico</label>
         <select
           name="chart"
@@ -115,7 +115,7 @@ export default function BarChart() {
       <Bar
         options={chartData.options}
         data={chartData.data}
-        className="bg-stone-800 p-4 rounded-xl border-stone-700 border "
+        className="bg-stone-800 p-4 rounded-xl border-stone-700 border max-h-[50vh]"
       />
     </>
   );

@@ -37,7 +37,7 @@ function SortOptions({ onSubmit }) {
 
   return (
     <div className="relative">
-      <form onSubmit={onSubmit} className="absolute z-50 right-0 top-1">
+      <form onSubmit={onSubmit} className="absolute z-50 left-0 top-1">
         <div className=" bg-stone-800/70 backdrop-blur p-4 rounded-sm flex flex-row gap-4 border border-stone-700">
           <div className="flex gap-4 items-center">
             <label htmlFor="column">Parámetro:</label>
