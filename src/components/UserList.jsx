@@ -9,8 +9,24 @@ import Pagination from "./Pagination";
 
 const mappedUsers = mapUserList(mockUserList.results);
 
+/*
+PARÁMETROS A INCLUIR PARA EL FETCH
+- login.id
+- picture.thumnail
+- name.first
+- name.last
+- location.country
+- registered.date
+https://randomuser.me/api?seed=test&results=5&inc=login,picture,name,location,registered
+
+
+*/
+
 const DEFAULT_ITEMS_PER_PAGE = 5;
 const DEFAULT_CURRENT_PAGE = 1;
+
+const NUMBER_OF_RESULTS = 50;
+const API_URL = "https://randomuser.me/api";
 
 export default function UserList() {
   const [userList, setUserList] = useState(mappedUsers);
@@ -18,6 +34,21 @@ export default function UserList() {
 
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
   const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
+
+  useEffect(() => {
+    fetch(
+      `${API_URL}?seed=test&results=${NUMBER_OF_RESULTS}&inc=login,picture,name,location,registered`,
+      {
+        mode: "cors",
+      }
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        const mappedUsers = mapUserList(response.results);
+        setUserList(mappedUsers);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   useEffect(() => {
     setSortedList(userList);
@@ -29,8 +60,7 @@ export default function UserList() {
   }
 
   function resetData() {
-    setUserList(mappedUsers);
-    setSortedList(mappedUsers);
+    setSortedList(userList);
   }
 
   function handleSort(e) {
