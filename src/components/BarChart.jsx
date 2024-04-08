@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { mockUserList } from "@/mockUserList";
 import { mapUserList } from "@/utils/mapUsers";
 import getCountRegisterPerYear from "@/utils/getCountRegisterPerYear";
@@ -24,9 +24,8 @@ ChartJS.register(
 );
 
 const userList = mapUserList(mockUserList.results);
-const yearsCount = getCountRegisterPerYear(userList);
 
-const DEFAULT_CHART_OPTIONS = {
+const DEFAULT_OPTIONS = {
   scales: {
     y: {
       suggestedMax: 6,
@@ -34,18 +33,13 @@ const DEFAULT_CHART_OPTIONS = {
   },
 };
 
-const DEFAULT_CHART_DATA = {
-  labels: yearsCount.map((row) => row.year),
-  datasets: [
-    {
-      label: "Usuarios registrados",
-      data: yearsCount.map((row) => row.count),
-      backgroundColor: ["rgba(6, 95, 70, 0.2)"],
-      borderColor: ["#065f46"],
-      borderWidth: 1,
-      hoverBackgroundColor: "rgba(6, 95, 70, 1)",
-    },
-  ],
+const DATASET_TEMPLATE = {
+  label: "",
+  data: undefined,
+  backgroundColor: ["rgba(6, 95, 70, 0.2)"],
+  borderColor: ["#065f46"],
+  borderWidth: 1,
+  hoverBackgroundColor: "rgba(6, 95, 70, 1)",
 };
 
 const chartDataSelector = {
@@ -55,43 +49,39 @@ const chartDataSelector = {
 
 export default function BarChart() {
   const [chartData, setChartData] = useState({
-    options: DEFAULT_CHART_OPTIONS,
-    data: DEFAULT_CHART_DATA,
+    labels: [],
+    datasets: [],
   });
+  const [selectedType, setSelectedType] = useState(
+    chartDataSelector.registration
+  );
 
-  function setCountUsersByCountry() {
-    const countriesCount = getCountriesCount(userList);
+  useEffect(() => {
+    let labels = [];
+    const dataset = { ...DATASET_TEMPLATE };
+    const datasets = [dataset];
 
-    const options = {};
-    const labels = Object.keys(countriesCount);
-    const datasets = [
-      {
-        label: "Usuarios por países",
-        data: Object.values(countriesCount),
-        backgroundColor: ["rgba(6, 95, 70, 0.2)"],
-        borderColor: ["#065f46"],
-        borderWidth: 1,
-        hoverBackgroundColor: "rgba(6, 95, 70, 1)",
-      },
-    ];
+    if (selectedType === chartDataSelector.registration) {
+      const yearsCount = getCountRegisterPerYear(userList);
 
-    const data = { options, data: { labels, datasets } };
-    setChartData(data);
-  }
+      labels = Object.keys(yearsCount);
 
-  function setCountByRegistrationDate() {
-    setChartData({
-      options: DEFAULT_CHART_OPTIONS,
-      data: DEFAULT_CHART_DATA,
-    });
-  }
+      dataset.label = "Usuarios registrados";
+      dataset.data = Object.values(yearsCount);
+    }
 
-  function handleDataChartSelector(e) {
-    const { value } = e.target;
+    if (selectedType === chartDataSelector.countries) {
+      const countriesCount = getCountriesCount(userList);
 
-    if (value === chartDataSelector.registration) setCountByRegistrationDate();
-    if (value === chartDataSelector.countries) setCountUsersByCountry();
-  }
+      labels = Object.keys(countriesCount);
+
+      dataset.label = "Usuarios por países";
+      dataset.data = Object.values(countriesCount);
+    }
+
+    const newData = { labels, datasets };
+    setChartData(newData);
+  }, [selectedType]);
 
   return (
     <>
@@ -100,11 +90,11 @@ export default function BarChart() {
         <select
           name="chart"
           id="chart-data"
-          onClick={handleDataChartSelector}
+          onChange={(e) => setSelectedType(e.target.value)}
           className="bg-stone-700 rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80"
         >
           <option value={chartDataSelector.registration}>
-            Registros por año{" "}
+            Registros por año
           </option>
           <option value={chartDataSelector.countries}>
             Usuarios por países
@@ -113,8 +103,8 @@ export default function BarChart() {
       </div>
 
       <Bar
-        options={chartData.options}
-        data={chartData.data}
+        options={DEFAULT_OPTIONS}
+        data={chartData}
         className="bg-stone-800 p-4 rounded-xl border-stone-700 border max-h-[50vh]"
       />
     </>

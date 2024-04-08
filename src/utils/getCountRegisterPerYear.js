@@ -3,21 +3,11 @@ export default function getCountRegisterPerYear(userList) {
     Number(userData.date.slice(0, 4))
   );
 
-  const yearsCount = [];
-  const smallestYear = Math.min(...userListDates);
-  const highestYear = Math.max(...userListDates);
-
-  for (let i = smallestYear; i <= highestYear; i++) {
-    yearsCount.push({ year: i, count: 0 });
-  }
-
+  const count = {};
   userListDates.forEach((year) => {
-    yearsCount.map((object) => {
-      if (object.year === year) {
-        object.count++;
-      }
-    });
+    if (count[year] === undefined) count[year] = 0;
+    count[year]++;
   });
 
-  return yearsCount;
+  return count;
 }
