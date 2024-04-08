@@ -95,11 +95,16 @@ export default function BarChart() {
 
   return (
     <>
-      <div>
+      <div className="text-sm flex gap-4 items-center justify-center">
         <label htmlFor="chart">Datos del gráfico</label>
-        <select name="chart" id="chart-data" onClick={handleDataChartSelector}>
+        <select
+          name="chart"
+          id="chart-data"
+          onClick={handleDataChartSelector}
+          className="bg-stone-700 rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80"
+        >
           <option value={chartDataSelector.registration}>
-            Registros por año
+            Registros por año{" "}
           </option>
           <option value={chartDataSelector.countries}>
             Usuarios por países
