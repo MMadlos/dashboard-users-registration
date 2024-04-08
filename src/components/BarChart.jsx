@@ -48,13 +48,18 @@ const DEFAULT_CHART_DATA = {
   ],
 };
 
+const chartDataSelector = {
+  registration: "registration-count",
+  countries: "countries-count",
+};
+
 export default function BarChart() {
   const [chartData, setChartData] = useState({
     options: DEFAULT_CHART_OPTIONS,
     data: DEFAULT_CHART_DATA,
   });
 
-  function handleCountUsersByCountry() {
+  function setCountUsersByCountry() {
     const countriesCount = getCountriesCount(userList);
 
     const options = {};
@@ -74,20 +79,33 @@ export default function BarChart() {
     setChartData(data);
   }
 
-  function handleCountByRegistrationDate() {
+  function setCountByRegistrationDate() {
     setChartData({
       options: DEFAULT_CHART_OPTIONS,
       data: DEFAULT_CHART_DATA,
     });
   }
 
+  function handleDataChartSelector(e) {
+    const { value } = e.target;
+
+    if (value === chartDataSelector.registration) setCountByRegistrationDate();
+    if (value === chartDataSelector.countries) setCountUsersByCountry();
+  }
+
   return (
     <>
-      <h1>Selecciona los datos que quieres que se muestren en el gráfico</h1>
-      <button onClick={handleCountByRegistrationDate}>
-        Registro de usuarios
-      </button>
-      <button onClick={handleCountUsersByCountry}>Usuarios por países</button>
+      <div>
+        <label htmlFor="chart">Datos del gráfico</label>
+        <select name="chart" id="chart-data" onClick={handleDataChartSelector}>
+          <option value={chartDataSelector.registration}>
+            Registros por año
+          </option>
+          <option value={chartDataSelector.countries}>
+            Usuarios por países
+          </option>
+        </select>
+      </div>
 
       <Bar
         options={chartData.options}
