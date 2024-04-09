@@ -8,8 +8,11 @@ export default function ThemeToggle() {
   };
 
   return (
-    <button onClick={toggleTheme}>
-      Switch to {theme === "light" ? "Dark" : "Light"} Mode
+    <button
+      onClick={toggleTheme}
+      className="rounded-full bg-stone-500 px-6 py-3"
+    >
+      Switch to {theme === "light" ? "Light" : "Dark"} Mode
     </button>
   );
 }
