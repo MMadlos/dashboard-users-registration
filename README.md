@@ -26,9 +26,9 @@ Exercice to create a table with a list of users and add actions to interact with
 - Get users from API -> https://randomuser.me/
 
   - Fetch data ✔️
-    - Check flow of data when table is restarted or sorted
-    - Check what happens when an item is deleted
-    - Add fetched data to table
+    - Check flow of data when table is restarted or sorted ✔️
+    - Check what happens when an item is deleted ✔️
+    - Add fetched data to table ✔️
 
 - Check pagination. When, for example, 50 items is requested, it overflows horizontally. ✔️
 

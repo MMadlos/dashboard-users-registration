@@ -9,8 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { useState, useEffect } from "react";
-import { mockUserList } from "@/mockUserList";
-import { mapUserList } from "@/utils/mapUsers";
 import getCountRegisterPerYear from "@/utils/getCountRegisterPerYear";
 import getCountriesCount from "@/utils/getCountriesCount";
 
@@ -23,15 +21,7 @@ ChartJS.register(
   Legend
 );
 
-const userList = mapUserList(mockUserList.results);
-
-const DEFAULT_OPTIONS = {
-  scales: {
-    y: {
-      suggestedMax: 6,
-    },
-  },
-};
+const DEFAULT_OPTIONS = {};
 
 const DATASET_TEMPLATE = {
   label: "",
@@ -47,7 +37,7 @@ const chartDataSelector = {
   countries: "countries-count",
 };
 
-export default function BarChart() {
+export default function BarChart({ userList }) {
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
@@ -81,7 +71,7 @@ export default function BarChart() {
 
     const newData = { labels, datasets };
     setChartData(newData);
-  }, [selectedType]);
+  }, [selectedType, userList]);
 
   return (
     <>
