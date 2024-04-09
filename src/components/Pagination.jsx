@@ -17,7 +17,7 @@ export default function Pagination({
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
 
-  function getPagesToShow() {
+  function getPageRangeToDisplay() {
     const firstPageToShow = currentPage - 2;
     const lastPageToShow = currentPage + 2;
 
@@ -37,12 +37,11 @@ export default function Pagination({
       return [newFirstPageToShow, newLastPageToShow];
     }
 
-    if (firstPageToShow > 0) return [firstPageToShow, lastPageToShow];
-    if (lastPageToShow <= totalPages) return [firstPageToShow, lastPageToShow];
+    return [firstPageToShow, lastPageToShow];
   }
 
-  const pagesToShow = getPagesToShow();
-  const [firstPageToShow, lastPageToShow] = pagesToShow;
+  const pageRange = getPageRangeToDisplay();
+  const [firstPageToShow, lastPageToShow] = pageRange;
 
   return (
     <div className="flex flex-row justify-between flex-wrap">
