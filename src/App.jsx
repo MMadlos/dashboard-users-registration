@@ -8,7 +8,6 @@ import { mapUserList } from "./utils/mapUsers";
 import UserList from "@/components/UserList";
 import BarChart from "./components/BarChart";
 import ThemeToggle from "./components/ToggleTheme";
-import { ThemeProvider } from "./components/Theme";
 
 const FALLBACK_USER_LIST = mapUserList(mockUserList.results);
 const NUMBER_OF_RESULTS = 50;
@@ -43,9 +42,7 @@ function App() {
   return (
     <>
       <header className="w-full pt-10 text-center">
-        <ThemeProvider>
-          <ThemeToggle />
-        </ThemeProvider>
+        <ThemeToggle />
       </header>
       <main className="container mx-auto my-10 p-4">
         <section className="flex flex-col gap-4 ">
