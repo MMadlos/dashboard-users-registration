@@ -37,7 +37,7 @@ Exercice to create a table with a list of users and add actions to interact with
 - Check width of table columns. There should be fixed columns: foto, fecha registro and acciones. The goal is to avoid sudden changes when clicking in another page or changing the number of items to show because the data has other lengths. ✔️
 - Check table responsive in small screens ✔️
 
-- Dark / light mode
+- Dark / light mode ✔️
 
   - Create toggle component ✔️
   - Implement logic ✔️
@@ -45,6 +45,8 @@ Exercice to create a table with a list of users and add actions to interact with
     - Apply dark styles to all website ✔️
     - Apply styles to the toggle component ✔️
     - Get user computer preference ✔️
+
+- Add card components for the dashboard ✔️
 
 - Animation effects
 
