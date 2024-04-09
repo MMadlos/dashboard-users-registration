@@ -7,6 +7,8 @@ import { mapUserList } from "./utils/mapUsers";
 
 import UserList from "@/components/UserList";
 import BarChart from "./components/BarChart";
+import ThemeToggle from "./components/ToggleTheme";
+import { ThemeProvider } from "./components/Theme";
 
 const FALLBACK_USER_LIST = mapUserList(mockUserList.results);
 const NUMBER_OF_RESULTS = 50;
@@ -39,16 +41,23 @@ function App() {
   }, []);
 
   return (
-    <main className="container mx-auto my-10 p-4">
-      <section className="flex flex-col gap-4 ">
-        <h2 className="text-3xl  text-emerald-400">Gráfico</h2>
-        <BarChart userList={userList} />
-      </section>
-      <section className="flex flex-col gap-4 mt-20">
-        <h2 className="text-3xl font-medium text-emerald-400">Listado</h2>
-        <UserList userList={userList} error={error} loading={loading} />
-      </section>
-    </main>
+    <>
+      <ThemeProvider>
+        <header>
+          <ThemeToggle />
+        </header>
+        <main className="container mx-auto my-10 p-4">
+          <section className="flex flex-col gap-4 ">
+            <h2 className="text-3xl text-emerald-400">Gráfico</h2>
+            <BarChart userList={userList} />
+          </section>
+          <section className="flex flex-col gap-4 mt-20">
+            <h2 className="text-3xl font-medium text-emerald-400">Listado</h2>
+            <UserList userList={userList} error={error} loading={loading} />
+          </section>
+        </main>
+      </ThemeProvider>
+    </>
   );
 }
 
