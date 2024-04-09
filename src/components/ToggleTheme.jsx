@@ -20,9 +20,12 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="rounded-full bg-stone-500 px-6 py-3 text-stone-200"
+      className="rounded-full dark:bg-emerald-600 px-6 py-3 dark:text-stone-200 dark:hover:bg-stone-800 dark:hover:text-emerald-400 bg-stone-700 text-emerald-500 hover:bg-emerald-400 hover:text-stone-800"
     >
-      Switch to {theme === "light" ? "Light" : "Dark"} Mode
+      Cambiar a{" "}
+      <span className="font-bold">
+        modo {theme === "light" ? "claro" : "oscuro"}
+      </span>
     </button>
   );
 }
