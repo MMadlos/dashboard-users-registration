@@ -28,12 +28,13 @@ Exercice to create a table with a list of users and add actions to interact with
   - Fetch data ✔️
     - Check flow of data when table is restarted or sorted
     - Check what happens when an item is deleted
-  - Check pagination. When, for example, 50 items is requested, it overflows horizontally. ✔️
+    - Add fetched data to table
 
-    - Idea: Show always first and last page and the prev, current and next page of the selected page. ✔️
+- Check pagination. When, for example, 50 items is requested, it overflows horizontally. ✔️
 
-  - Check restart data -> When is clicked, mocked users are placed instead of the API
-  - Check width of table columns. There should be fixed columns: foto, fecha registro and acciones. The goal is to avoid sudden changes when clicking in another page or changing the number of items to show because the data has other lengths.
+  - Show only 5 pages maximum ✔️
+
+- Check width of table columns. There should be fixed columns: foto, fecha registro and acciones. The goal is to avoid sudden changes when clicking in another page or changing the number of items to show because the data has other lengths.
 
 - Dark / light mode
 
