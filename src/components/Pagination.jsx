@@ -104,7 +104,7 @@ function ItemsSelector({ onChangeItems }) {
       <p>Ver</p>
       <select
         name="items"
-        className="bg-inherit  rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80 border-2 border-stone-700"
+        className="bg-inherit  rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80 border border-stone-700 dark:border-stone-400 dark:bg-stone-300"
         onChange={onChangeItems}
       >
         {options.map((value, index) => {
@@ -112,7 +112,7 @@ function ItemsSelector({ onChangeItems }) {
             <option
               key={index}
               value={value}
-              className="bg-stone-900 hover:bg-emerald-900 "
+              className="bg-stone-900 hover:bg-emerald-900 dark:bg-stone-300"
             >
               {value}
             </option>
@@ -128,7 +128,7 @@ function ButtonPageSelector({ id, children, onClick, isDisabled }) {
   return (
     <button
       id={id}
-      className=" size-fit p-1 fill-white hover:fill-emerald-700 disabled:opacity-20 disabled:hover:fill-white"
+      className="size-fit p-1 fill-white hover:fill-emerald-700 disabled:opacity-20  dark:fill-stone-500 dark:disabled:hover:fill-stone-500 dark:hover:fill-stone-300"
       onClick={onClick}
       disabled={isDisabled}
     >
@@ -141,7 +141,7 @@ function ButtonPage({ isSelected, onClick, children }) {
   return (
     <button
       data-selected={isSelected}
-      className="py-2  rounded-full px-4 bg-stone-800 data-[selected=true]:bg-emerald-900 hover:bg-stone-700"
+      className="py-2  rounded-full px-4 bg-stone-800 data-[selected=true]:bg-emerald-900 hover:bg-stone-700 dark:bg-stone-300 dark:data-[selected=true]:bg-emerald-500 dark:text-emerald-800"
       onClick={onClick}
     >
       {children}

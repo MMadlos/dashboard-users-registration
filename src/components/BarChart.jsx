@@ -81,7 +81,7 @@ export default function BarChart({ userList }) {
           name="chart"
           id="chart-data"
           onChange={(e) => setSelectedType(e.target.value)}
-          className="bg-stone-700 rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80"
+          className="bg-stone-700 rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80 dark:bg-stone-300"
         >
           <option value={chartDataSelector.registration}>
             Registros por año
@@ -95,7 +95,7 @@ export default function BarChart({ userList }) {
       <Bar
         options={DEFAULT_OPTIONS}
         data={chartData}
-        className="bg-stone-800 p-4 rounded-xl border-stone-700 border max-h-[50vh]"
+        className="bg-stone-800 p-4 rounded-xl border-stone-700 border max-h-[50vh] dark:bg-stone-200"
       />
     </>
   );

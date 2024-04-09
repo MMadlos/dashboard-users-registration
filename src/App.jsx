@@ -48,11 +48,15 @@ function App() {
         </header>
         <main className="container mx-auto my-10 p-4">
           <section className="flex flex-col gap-4 ">
-            <h2 className="text-3xl text-emerald-400">Gráfico</h2>
+            <h2 className="text-3xl text-emerald-400 dark:text-emerald-600 font-bold">
+              Gráfico
+            </h2>
             <BarChart userList={userList} />
           </section>
           <section className="flex flex-col gap-4 mt-20">
-            <h2 className="text-3xl font-medium text-emerald-400">Listado</h2>
+            <h2 className="text-3xl font-bold text-emerald-400 dark:text-emerald-600">
+              Listado
+            </h2>
             <UserList userList={userList} error={error} loading={loading} />
           </section>
         </main>
