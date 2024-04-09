@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `${API_URL}?seed=test&results=${NUMBER_OF_RESULTS}&inc=login,picture,name,location,registered`,
+      `${API_URL}?seed=test&results=${NUMBER_OF_RESULTS}&inc=login,picture,name,location,registered,email`,
       {
         mode: "cors",
       }
