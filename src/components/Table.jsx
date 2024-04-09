@@ -15,16 +15,16 @@ export default function Table({
   });
 
   return (
-    <table className="w-full">
+    <table className=" table-fixed h-full mx-auto w-full">
       <thead>
-        <tr className="border-b border-stone-600">
-          <th className="py-2">Foto</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Email</th>
-          <th>País</th>
-          <th>Fecha registro</th>
-          <th>Acciones</th>
+        <tr className="border-b border-stone-600 [&>*]:py-2 ">
+          <th className="w-[100px] text-center">Foto</th>
+          <th className="pl-4 text-left">Nombre</th>
+          <th className="text-left">Apellido</th>
+          <th className="w-[300px] text-left">Email</th>
+          <th className="pl-4 text-left">País</th>
+          <th className="w-[213px] text-left">Fecha registro</th>
+          <th className="w-[130px] text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -34,21 +34,25 @@ export default function Table({
 
           return (
             <tr key={id}>
-              <td className="py-2">
+              <TD className="text-center">
                 <img src={picture} alt="" className="mx-auto rounded-full " />
-              </td>
-              <td>{firstName}</td>
-              <td>{lastName}</td>
-              <td>{email}</td>
-              <td>{country}</td>
-              <td>{date}</td>
-              <td>
+              </TD>
+              <TD className="pl-4">{firstName}</TD>
+              <TD>{lastName}</TD>
+              <TD>{email}</TD>
+              <TD className="pl-4">{country}</TD>
+              <TD>{date}</TD>
+              <TD className="text-center">
                 <Button text="Eliminar" onClick={() => onClickDelete(id)} />
-              </td>
+              </TD>
             </tr>
           );
         })}
       </tbody>
     </table>
   );
+}
+
+function TD({ children, className = "" }) {
+  return <td className={`py-2 ${className}`}>{children}</td>;
 }
