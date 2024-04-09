@@ -74,7 +74,7 @@ export default function BarChart({ userList }) {
   }, [selectedType, userList]);
 
   return (
-    <>
+    <div className="w-full flex flex-col gap-2">
       <div className="text-sm flex gap-4 items-center ">
         <label htmlFor="chart">Datos del gráfico</label>
         <select
@@ -97,6 +97,6 @@ export default function BarChart({ userList }) {
         data={chartData}
         className="bg-stone-800 p-4 rounded-xl border-stone-700 border max-h-[50vh] dark:bg-stone-200"
       />
-    </>
+    </div>
   );
 }

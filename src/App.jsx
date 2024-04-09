@@ -8,6 +8,7 @@ import { mapUserList } from "./utils/mapUsers";
 import UserList from "@/components/UserList";
 import BarChart from "./components/BarChart";
 import ThemeToggle from "./components/ToggleTheme";
+import Card from "./components/Card";
 
 const FALLBACK_USER_LIST = mapUserList(mockUserList.results);
 const NUMBER_OF_RESULTS = 50;
@@ -47,9 +48,16 @@ function App() {
       <main className="container mx-auto my-10 p-4">
         <section className="flex flex-col gap-4 ">
           <h2 className="text-3xl text-emerald-400 dark:text-emerald-600 font-bold">
-            Gráfico
+            Dashboard
           </h2>
-          <BarChart userList={userList} />
+          <div className="flex flex-col gap-10">
+            <div className="grid grid-cols-3 gap-2 lg:gap-4 justify-start max-w-fit">
+              <Card title="Total users" data="25" />
+              <Card title="Users registered this year" data="4" />
+              <Card title="Most users location" data="Germany" />
+            </div>
+            <BarChart userList={userList} />
+          </div>
         </section>
         <section className="flex flex-col gap-4 mt-20">
           <h2 className="text-3xl font-bold text-emerald-400 dark:text-emerald-600">
