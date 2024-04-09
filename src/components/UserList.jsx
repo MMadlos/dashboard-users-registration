@@ -1,61 +1,22 @@
 import { useState, useEffect } from "react";
-import { mockUserList } from "@/mockUserList";
-import { mapUserList } from "@/utils/mapUsers";
 
 import Button from "@/components/Button";
 import Table from "@/components/Table";
 import SortPanel from "./SortPanel";
 import Pagination from "./Pagination";
 
-const MOCK_USER_LIST = mapUserList(mockUserList.results);
-
-/*
-PARÁMETROS A INCLUIR PARA EL FETCH
-- login.id
-- picture.thumnail
-- name.first
-- name.last
-- location.country
-- registered.date
-https://randomuser.me/api?seed=test&results=5&inc=login,picture,name,location,registered
-*/
-
 const DEFAULT_ITEMS_PER_PAGE = 5;
 const DEFAULT_CURRENT_PAGE = 1;
 
-const NUMBER_OF_RESULTS = 50;
-const API_URL = "https://randomuser.me/api";
-
-export default function UserList() {
-  const [userList, setUserList] = useState(MOCK_USER_LIST);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
+export default function UserList({ userList, error, loading }) {
   const [sortedList, setSortedList] = useState(userList);
 
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
   const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
   useEffect(() => {
-    fetch(
-      `${API_URL}?seed=test&results=${NUMBER_OF_RESULTS}&inc=login,picture,name,location,registered`,
-      {
-        mode: "cors",
-      }
-    )
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error("server error");
-        }
-        return response.json();
-      })
-      .then((response) => {
-        const mappedUsers = mapUserList(response.results);
-        setUserList(mappedUsers);
-      })
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  }, []);
+    setSortedList(userList);
+  }, [userList]);
 
   function removeUser(userID) {
     const newUserList = sortedList.filter(({ id }) => id !== userID);
