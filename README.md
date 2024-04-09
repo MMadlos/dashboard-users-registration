@@ -40,11 +40,11 @@ Exercice to create a table with a list of users and add actions to interact with
 - Dark / light mode
 
   - Create toggle component ✔️
-  - Implement logic
+  - Implement logic ✔️
     - Save it in the localStorage ✔️
     - Apply dark styles to all website ✔️
     - Apply styles to the toggle component ✔️
-    - Get user computer preference
+    - Get user computer preference ✔️
 
 - Animation effects
 
