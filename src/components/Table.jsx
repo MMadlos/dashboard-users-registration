@@ -15,16 +15,16 @@ export default function Table({
   });
 
   return (
-    <table className=" table-fixed h-full mx-auto w-full">
+    <table className="table-fixed mx-auto w-full text-sm  lg:table-auto">
       <thead>
         <tr className="border-b border-stone-600 [&>*]:py-2 ">
-          <th className="w-[100px] text-center">Foto</th>
-          <th className="pl-4 text-left">Nombre</th>
-          <th className="text-left">Apellido</th>
-          <th className="w-[300px] text-left">Email</th>
-          <th className="pl-4 text-left">País</th>
-          <th className="w-[213px] text-left">Fecha registro</th>
-          <th className="w-[130px] text-center">Acciones</th>
+          <th className="w-[60px] sm:w-[100px] text-center">Foto</th>
+          <th className="w-[15ch] pl-4 text-left">Nombre</th>
+          <th className="w-[15ch] text-left">Apellido</th>
+          <th className="w-[40ch] text-left">Email</th>
+          <th className="w-[15ch] pl-4 text-left">País</th>
+          <th className="w-[30ch] text-left">Fecha registro</th>
+          <th className="w-[150px] text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>

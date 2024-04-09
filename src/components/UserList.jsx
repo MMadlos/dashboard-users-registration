@@ -90,12 +90,14 @@ export default function UserList({ userList, error, loading }) {
         onClickPage={handleClickPageNum}
         onClickPageSelector={handlePageSelector}
       />
-      <Table
-        userList={sortedList}
-        onClickDelete={removeUser}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-      />
+      <div className="overflow-x-auto pt-1 pb-8 border-stone-700 border-2 rounded-lg lg:border-none shadow-md shadow-stone-800 lg:shadow-none">
+        <Table
+          userList={sortedList}
+          onClickDelete={removeUser}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+        />
+      </div>
     </div>
   );
 }
