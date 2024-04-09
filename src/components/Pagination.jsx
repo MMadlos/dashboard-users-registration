@@ -10,8 +10,6 @@ export default function Pagination({
   onClickPage,
   onClickPageSelector,
 }) {
-  const options = ["5", "10", "15", "20"];
-
   const pagesArray = Array(totalPages)
     .fill()
     .map((_, index) => index + 1);
@@ -19,29 +17,36 @@ export default function Pagination({
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
 
+  function getPagesToShow() {
+    const firstPageToShow = currentPage - 2;
+    const lastPageToShow = currentPage + 2;
+
+    if (firstPageToShow <= 0) {
+      const differenceToAdd = Math.abs(firstPageToShow) + 1;
+      const newFirstPageToShow = 1;
+      const newLastPageToShow = lastPageToShow + differenceToAdd;
+
+      return [newFirstPageToShow, newLastPageToShow];
+    }
+
+    if (lastPageToShow >= totalPages) {
+      const differenceToAdd = lastPageToShow - totalPages;
+      const newFirstPageToShow = firstPageToShow - differenceToAdd;
+      const newLastPageToShow = totalPages;
+
+      return [newFirstPageToShow, newLastPageToShow];
+    }
+
+    if (firstPageToShow > 0) return [firstPageToShow, lastPageToShow];
+    if (lastPageToShow <= totalPages) return [firstPageToShow, lastPageToShow];
+  }
+
+  const pagesToShow = getPagesToShow();
+  const [firstPageToShow, lastPageToShow] = pagesToShow;
+
   return (
     <div className="flex flex-row justify-between flex-wrap">
-      <div className="flex gap-4 items-center text-sm">
-        <p>Ver</p>
-        <select
-          name="items"
-          className="bg-inherit  rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80 border-2 border-stone-700"
-          onChange={onChangeItems}
-        >
-          {options.map((value, index) => {
-            return (
-              <option
-                key={index}
-                value={value}
-                className="bg-stone-900 hover:bg-emerald-900 "
-              >
-                {value}
-              </option>
-            );
-          })}
-        </select>
-        <p>usuarios</p>
-      </div>
+      <ItemsSelector onChangeItems={onChangeItems} />
 
       <div className="flex flex-row gap-2 items-center">
         <ButtonPageSelector
@@ -61,15 +66,17 @@ export default function Pagination({
         {pagesArray.map((pageNum, index) => {
           const isCurrentPage = pageNum === currentPage;
 
-          return (
-            <ButtonPage
-              key={index}
-              isSelected={isCurrentPage}
-              onClick={onClickPage}
-            >
-              {pageNum}
-            </ButtonPage>
-          );
+          if (firstPageToShow <= index + 1 && index + 1 <= lastPageToShow) {
+            return (
+              <ButtonPage
+                key={index}
+                isSelected={isCurrentPage}
+                onClick={onClickPage}
+              >
+                {pageNum}
+              </ButtonPage>
+            );
+          }
         })}
         <ButtonPageSelector
           id="next-page"
@@ -86,6 +93,34 @@ export default function Pagination({
           <DoubleChevRight className="size-5  flex flex-row gap-0 items-center" />
         </ButtonPageSelector>
       </div>
+    </div>
+  );
+}
+
+function ItemsSelector({ onChangeItems }) {
+  const options = ["5", "10", "15", "20"];
+
+  return (
+    <div className="flex gap-4 items-center text-sm">
+      <p>Ver</p>
+      <select
+        name="items"
+        className="bg-inherit  rounded-sm px-4 py-2 hover:cursor-pointer hover:opacity-80 border-2 border-stone-700"
+        onChange={onChangeItems}
+      >
+        {options.map((value, index) => {
+          return (
+            <option
+              key={index}
+              value={value}
+              className="bg-stone-900 hover:bg-emerald-900 "
+            >
+              {value}
+            </option>
+          );
+        })}
+      </select>
+      <p>usuarios</p>
     </div>
   );
 }
