@@ -7,7 +7,7 @@ import Table from "@/components/Table";
 import SortPanel from "./SortPanel";
 import Pagination from "./Pagination";
 
-const mappedUsers = mapUserList(mockUserList.results);
+const MOCK_USER_LIST = mapUserList(mockUserList.results);
 
 /*
 PARÁMETROS A INCLUIR PARA EL FETCH
@@ -18,8 +18,6 @@ PARÁMETROS A INCLUIR PARA EL FETCH
 - location.country
 - registered.date
 https://randomuser.me/api?seed=test&results=5&inc=login,picture,name,location,registered
-
-
 */
 
 const DEFAULT_ITEMS_PER_PAGE = 5;
@@ -29,7 +27,10 @@ const NUMBER_OF_RESULTS = 50;
 const API_URL = "https://randomuser.me/api";
 
 export default function UserList() {
-  const [userList, setUserList] = useState(mappedUsers);
+  const [userList, setUserList] = useState(MOCK_USER_LIST);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const [sortedList, setSortedList] = useState(userList);
 
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
@@ -42,21 +43,23 @@ export default function UserList() {
         mode: "cors",
       }
     )
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("server error");
+        }
+        return response.json();
+      })
       .then((response) => {
         const mappedUsers = mapUserList(response.results);
         setUserList(mappedUsers);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
   }, []);
-
-  useEffect(() => {
-    setSortedList(userList);
-  }, [userList]);
 
   function removeUser(userID) {
     const newUserList = sortedList.filter(({ id }) => id !== userID);
-    setUserList(newUserList);
+    setSortedList(newUserList);
   }
 
   function resetData() {
@@ -109,6 +112,9 @@ export default function UserList() {
     if (buttonID === "next-page") setCurrentPage(currentPage + 1);
     if (buttonID === "last-page") setCurrentPage(totalPages);
   }
+
+  if (error) return <p>A network error was encountered</p>;
+  if (loading) return <p>Loading</p>;
 
   return (
     <div className="flex flex-col gap-8">
