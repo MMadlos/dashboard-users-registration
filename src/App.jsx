@@ -7,7 +7,7 @@ import BarChart from "./components/BarChart";
 
 function App() {
   return (
-    <main className="container mx-auto my-10">
+    <main className="container mx-auto my-10 p-4">
       <section className="flex flex-col gap-4 ">
         <h2 className="text-3xl  text-emerald-400">Gráfico</h2>
         <BarChart />

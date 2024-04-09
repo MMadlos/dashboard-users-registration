@@ -20,7 +20,7 @@ export default function Pagination({
   const isLastPage = currentPage === totalPages;
 
   return (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row justify-between flex-wrap">
       <div className="flex gap-4 items-center text-sm">
         <p>Ver</p>
         <select
