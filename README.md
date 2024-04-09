@@ -35,7 +35,7 @@ Exercice to create a table with a list of users and add actions to interact with
   - Show only 5 pages maximum ✔️
 
 - Check width of table columns. There should be fixed columns: foto, fecha registro and acciones. The goal is to avoid sudden changes when clicking in another page or changing the number of items to show because the data has other lengths. ✔️
-- Check table responsive in small screens
+- Check table responsive in small screens ✔️
 
 - Dark / light mode
 
